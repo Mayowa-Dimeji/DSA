@@ -28,6 +28,11 @@ def reverse_string(s):
         right -= 1
 
 
+s = ["h", "e", "l", "l", "o"]
+reverse_string(s)
+print(s)
+
+
 # Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
 
 
@@ -53,24 +58,25 @@ def reverse_string(s):
 # Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
 
 
-    def sortedSquares(nums: List[int]) -> List[int]:
-        n = len(nums)
-        left, right = 0, n-1
-        ans = [0]*n
-        pos = n-1
+def sortedSquares(nums: List[int]) -> List[int]:
+    n = len(nums)
+    left, right = 0, n-1
+    ans = [0]*n
+    pos = n-1
 
-        while left <= right:
-            left_square = nums[left]**2
-            right_square = nums[right]**2
-            if left_square > right_square:
-                ans[pos] = left_square
-                left += 1
-            else:
-                ans[pos] = right_square
-                right -= 1
-            pos -= 1
+    while left <= right:
+        left_square = nums[left]**2
+        right_square = nums[right]**2
+        if left_square > right_square:
+            ans[pos] = left_square
+            left += 1
+        else:
+            ans[pos] = right_square
+            right -= 1
+        pos -= 1
 
-        return ans
+    return ans
 
-    myvar = sortedSquares([-4, -1, 0, 3, 10])
-    print(myvar)
+
+myvar = sortedSquares([-4, -1, 0, 3, 10])
+print(myvar)
