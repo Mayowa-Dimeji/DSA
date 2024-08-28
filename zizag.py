@@ -1,34 +1,23 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        queue = deque([root])
-        ans = []
-        count = 1
+def zigzag(s: str, numRows: int):
+    ans = [[] for _ in range(numRows)]
+    row = 0
+    down = True
 
-        while queue:
-            n = len(queue)
-            level = []
+    for c in s:
+        ans[row].append(c)
 
-            for _ in range(n):
-                if count % 2 != 0:
-                    node = queue.popleft()
-                    if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-                if count % 2 == 0:
-                    node = queue.pop()
-                    if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-                level.append(node.val)
+        if row == 0:
+            down = True
+        if row == numRows-1:
+            down = False
 
-            ans.append(level)
-            count += 1
-        return ans
+        if down:
+            row += 1
+        else:
+            row -= 1
+
+    return ''.join(''.join(row) for row in ans)
+
+
+s, numRows = "PAYPALISHIRING", 5
+print(zigzag(s, numRows))
